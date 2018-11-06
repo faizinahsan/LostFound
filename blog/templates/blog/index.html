@@ -21,14 +21,13 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Enter your item here">
                                             <input type="submit" class="form-control" value="Search">
-
                                         </div><!-- /input-group -->
                                     </div>
 
-                                    <button style="margin-top: 10px" type="button" class="btn btn-primary btn-lg">Lost
-                                        Something</button>
-                                    <button style="margin-top: 10px" type="button" class="btn btn-primary btn-lg">Found
-                                        Something</button>
+                                    <a style="margin-top: 10px" class="btn btn-primary btn-lg" href="{% url 'blog-search' %}">Lost
+                                        Something</a>
+                                    <a style="margin-top: 10px" class="btn btn-primary btn-lg" href="{% url 'blog-search' %}"">Found
+                                        Something</a>
 
                                 </div>
                             </div>

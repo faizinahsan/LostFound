@@ -12,3 +12,9 @@ def dev_post(request):
         'posts':Post.objects.all()
     }
     return render(request,'blog/dev_post.html',context)
+def profile(request):
+    return render(request,'blog/profile.html')
+def edit_profile(request):
+    return render(request,'blog/editprofile.html')
+def search(request):
+    return render(request,'blog/search.html')

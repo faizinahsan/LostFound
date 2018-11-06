@@ -1,0 +1,159 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Sections -->
+    <section id="business" class="portfolio sections">
+        <div class="container">
+            <div class="row">
+                <!--1-->
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <!-- <div class="pull-right">
+                                            <button type="button" class="close" aria-label="Close">
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>-->
+                        </div>
+    
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg"
+                                        alt="" class="img-rounded img-responsive" />
+                                </div>
+    
+                                <div class="col-sm-4 col-md-4">
+                                    <blockquote>
+                                        <h3 style="color :coral">Bruce Wayne</h3> <small><cite>Gotham, United Kingdom <i
+                                                    class="glyphicon glyphicon-map-marker"></i></cite></small>
+                                    </blockquote>
+    
+                                </div>
+    
+                                <div class="col-sm-6 col-md-6">
+                                    <a class="btn btn-success pull-right" href="{% url 'blog-editprofile' %}">Edit Profile</a>
+                                </div>
+                            </div>
+    
+                            <br>
+                            <p>EMAIL : </p>
+                            <p>LINE ID : </p>
+                            <p>PHONE : </p>
+                            <p>TOTAL POSTS : </p>
+    
+                        </div>
+                    </div>
+                </div>
+                <!--end1-->
+    
+                <!--2-->
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+    
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p>Find all posts made by ....</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p>20-10-2018 11:55</p>
+                                    </div>
+    
+                                    <div class="panel-body">
+                                        <h4>Bruce Wayne</h4>
+                                        <p>Telah ditemukan di Gotham, United Kingdom </p>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p>20-10-2018 10:00</p>
+                                    </div>
+    
+                                    <div class="panel-body">
+                                        <h4>Bruce Wayne</h4>
+                                        <p>Telah ditemukan di Jatinangor, Indonesia </p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+                <!--end 2-->
+    
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="contact sections">
+        <div class="container">
+            <div class="row">
+                <div class="main_contact whitebackground">
+                    <div class="head_title text-center">
+                        <h2>GET IN TOUCH</h2>
+                        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo
+                            luctus, nisi erat porttitor ligula.</p>
+                    </div>
+                    <div class="contact_content">
+                        <div class="col-md-6">
+                            <div class="single_left_contact">
+                                <form action="#" id="formid">
+    
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="first name"
+                                            required="">
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                                    </div>
+    
+    
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
+                                    </div>
+    
+                                    <div class="center-content">
+                                        <input type="submit" value="Submit" class="btn btn-default">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="single_right_contact">
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
+                                    mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non,
+                                    semper suscipit, posuere a, pede.</p>
+    
+                                <div class="contact_address margin-top-40">
+                                    <span>1600 Pennsylvania Ave NW, Washington,</span>
+                                    <span>DC 20500, United States of America.</span>
+                                    <span class="margin-top-20">T: (202) 456-1111</span>
+                                    <span>M: (202) 456-1212</span>
+                                </div>
+    
+                                <div class="contact_socail_bookmark">
+                                    <a href=""><i class="fa fa-facebook"></i></a>
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                    <a href=""><i class="fa fa-google"></i></a>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End of Contact Section -->
+{% endblock content %}
