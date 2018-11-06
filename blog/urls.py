@@ -4,4 +4,5 @@ urlpatterns = [
     path('', views.index,name='blog-home'),
     path('kategori/', views.kategori,name='blog-kategori'),
     path('masuk/', views.masuk ,name='blog-masuk'),
+    path('post/', views.dev_post ,name='blog-post'),
 ]
