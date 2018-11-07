@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 # Create your models here.
+<<<<<<< HEAD
 
 class Post(models.Model):
 	"""docstring for ClassName"""
@@ -81,3 +82,6 @@ class User(models.Model):
 	#line VARCHAR(255) NOT NULL
 	
 	
+# class Registration(models.Model):
+#     username = models.CharField(max_length=50)
+#     email = models.EmailField(max_length=254)
