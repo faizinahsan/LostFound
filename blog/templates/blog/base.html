@@ -58,8 +58,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="{% url 'blog-home' %}">Home</a></li>
                     <li><a href="{% url 'blog-kategori' %}">CATEGORY</a></li>
-                    <li class="login"><a href="{% url 'blog-masuk' %}">Sign In</a></li>
-                    <li class="login"><a href="{% url 'blog-profile' %}">Sign Up</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="login"><a href="{% url 'blog-profile' %}">Profile</a></li>
+                        <li class="login"><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="login"><a href="{% url 'login' %}">Sign In</a></li>
+                        <li class="login"><a href="{% url 'register' %}">Sign Up</a></li>
+                    {% endif %}
+
                 </ul>
 
             </div><!-- /.navbar-collapse -->
