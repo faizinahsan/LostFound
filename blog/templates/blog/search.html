@@ -18,39 +18,39 @@
             </div>
 
             <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <!-- <div class="pull-right">
-                                        <button type="button" class="close" aria-label="Close">
-                                          <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>-->
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-2 col-md-2">
-                                <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg"
-                                    alt="" class="img-rounded img-responsive" />
-                            </div>
-
-                            <div class="col-sm-4 col-md-4">
-                                <blockquote>
-                                    <h3 style="color :coral">Bruce Wayne</h3> <small><cite>Gotham, United Kingdom <i
-                                                class="glyphicon glyphicon-map-marker"></i></cite></small>
-                                </blockquote>
-                            </div>
-                        </div>
-
-                        <br>
-                        <p>Category : </p>
-                        <p>Type : </p>
-                        <p>Found At : </p>
-                        <p>Found By : </p>
-                        <p>Time : </p>
-
-                    </div>
+        {% for post in posts %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!-- <div class="pull-right">
+                                                                <button type="button" class="close" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>-->
                 </div>
+            
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-2 col-md-2">
+                            <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg" alt="" class="img-rounded img-responsive" />
+                        </div>
+            
+                        <div class="col-sm-4 col-md-4">
+                            <blockquote>
+                                <h3 style="color :coral">{{post.title}}</h3> <small><cite>Gotham, United Kingdom <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                            </blockquote>
+                        </div>
+                    </div>
+            
+                    <br>
+                    <p>Category : {{post.idCategories.name}}</p>
+                    <p>Type : {{post.idTypes.name}}</p>
+                    <p>Found At : {{post.area}}</p>
+                    <p>Found By : {{post.idUsers.username}}</p>
+                    <p>Time : {{post.createdDate}}</p>
+            
+                </div>
+            </div>
+        {% endfor %}
             </div>
 
         </div>

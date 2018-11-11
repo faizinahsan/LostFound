@@ -1,10 +1,20 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post,Category
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 # Create your views here.
 def index(request):
     return render(request,'blog/index.html')
 def kategori(request):
-    return render(request,'blog/kategori.html')
+    context={
+        'cat':Category.objects.all()
+    }
+    return render(request,'blog/kategori.html',context)
 def masuk(request):
     return render(request,'blog/masuk.html')
 def dev_post(request):
@@ -17,4 +27,22 @@ def profile(request):
 def edit_profile(request):
     return render(request,'blog/editprofile.html')
 def search(request):
-    return render(request,'blog/search.html')
+    context ={
+        'posts':Post.objects.all()
+    }
+    return render(request,'blog/search.html',context)
+def searchCat(request,idCat):
+    context = {
+        'posts':Post.objects.filter(idCategories=idCat)
+    }
+    return render(request,'blog/search.html',context)
+def searchTypes(request,idTypes):
+    context = {
+        'posts':Post.objects.filter(idCategories=idTypes)
+    }
+    return render(request,'blog/search.html',context)
+# class SearchTypes(ListView):
+#     model = Post
+#     template_name = 'blog/search.html'  # <app>/<model>_<viewtype>.html
+#     context_object_name = 'posts'
+#     ordering = ['-date_posted']
