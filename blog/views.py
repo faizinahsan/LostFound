@@ -30,7 +30,7 @@ def search(request):
     if request.method =='GET':
         search_query = request.GET.get('search_box', None)
         context ={
-            'posts':Post.objects.filter(title__icontains=search_query),
+            'posts':Post.objects.filter(title__icontains=search_query).order_by('-createdDate'),
             'typesLost':Post.objects.filter(idTypes=1,title__icontains=search_query),
             'typesFound':Post.objects.filter(idTypes=2,title__icontains=search_query),
         }
@@ -38,16 +38,16 @@ def search(request):
     return render(request,'blog/search.html',context)
 def searchCat(request,idCat):
     context = {
-        'posts':Post.objects.filter(idCategories=idCat),
+        'posts':Post.objects.filter(idCategories=idCat).order_by('-createdDate'),
         'typesLost':Post.objects.filter(idTypes=1,idCategories=idCat),
         'typesFound':Post.objects.filter(idTypes=2,idCategories=idCat),
     }
     return render(request,'blog/search.html',context)
 def searchTypes(request,idTypes):
     context = {
-        'posts':Post.objects.filter(idCategories=idTypes),
-        'typesLost':Post.objects.filter(idTypes=1,idCategories=idTypes),
-        'typesFound':Post.objects.filter(idTypes=2,idCategories=idTypes),
+        'posts':Post.objects.filter(idTypes=idTypes).order_by('-createdDate'),
+        'typesLost':Post.objects.filter(idTypes=idTypes),
+        'typesFound':Post.objects.filter(idTypes=idTypes),
     }
     return render(request,'blog/search.html',context)
 # class SearchTypes(ListView):
