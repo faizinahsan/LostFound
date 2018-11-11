@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post,Category
+from .models import Post,Category,Types
 from django.views.generic import (
     ListView,
     DetailView,
@@ -28,17 +28,23 @@ def edit_profile(request):
     return render(request,'blog/editprofile.html')
 def search(request):
     context ={
-        'posts':Post.objects.all()
+        'posts':Post.objects.all(),
+        'typesLost':Post.objects.filter(idTypes=1),
+        'typesFound':Post.objects.filter(idTypes=2),
     }
     return render(request,'blog/search.html',context)
 def searchCat(request,idCat):
     context = {
-        'posts':Post.objects.filter(idCategories=idCat)
+        'posts':Post.objects.filter(idCategories=idCat),
+        'typesLost':Post.objects.filter(idTypes=1,idCategories=idCat),
+        'typesFound':Post.objects.filter(idTypes=2,idCategories=idCat),
     }
     return render(request,'blog/search.html',context)
 def searchTypes(request,idTypes):
     context = {
-        'posts':Post.objects.filter(idCategories=idTypes)
+        'posts':Post.objects.filter(idCategories=idTypes),
+        'typesLost':Post.objects.filter(idTypes=1,idCategories=idTypes),
+        'typesFound':Post.objects.filter(idTypes=2,idCategories=idTypes),
     }
     return render(request,'blog/search.html',context)
 # class SearchTypes(ListView):
