@@ -27,11 +27,14 @@ def profile(request):
 def edit_profile(request):
     return render(request,'blog/editprofile.html')
 def search(request):
-    context ={
-        'posts':Post.objects.all(),
-        'typesLost':Post.objects.filter(idTypes=1),
-        'typesFound':Post.objects.filter(idTypes=2),
-    }
+    if request.method =='GET':
+        search_query = request.GET.get('search_box', None)
+        context ={
+            'posts':Post.objects.filter(title__icontains=search_query),
+            'typesLost':Post.objects.filter(idTypes=1,title__icontains=search_query),
+            'typesFound':Post.objects.filter(idTypes=2,title__icontains=search_query),
+        }
+        return render(request,'blog/search.html',context)
     return render(request,'blog/search.html',context)
 def searchCat(request,idCat):
     context = {

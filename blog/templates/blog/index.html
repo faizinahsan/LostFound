@@ -18,10 +18,10 @@
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
                                     <div class="home-contact">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter your item here">
+                                        <form action="{%url 'blog-search'%}" method="GET" class="input-group">
+                                            <input id='search_box' name='search_box' type="text" class="form-control" placeholder="Enter your item here">
                                             <input type="submit" class="form-control" value="Search">
-                                        </div><!-- /input-group -->
+                                        </form>
                                     </div>
 
                                     <a style="margin-top: 10px" class="btn btn-primary btn-lg" href="{% url 'blog-search-types' 1 %}">Lost
