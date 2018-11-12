@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <!-- <div class="pull-right">
+                                                                    <button type="button" class="close" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                    </button>
+                                                                </div>-->
+        </div>
+    
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 col-md-2">
+                    <img src="{{post.image.url}}" alt="" class="img-rounded img-responsive" />
+                </div>
+    
+                <div class="col-sm-4 col-md-4">
+                    <blockquote>
+                        <h3 style="color :coral">{{post.title}}</h3> <small><cite>Gotham, United Kingdom <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                    </blockquote>
+                </div>
+            </div>
+            <article>{{post.body}}</article>
+            <br>
+            <p>Category : {{post.idCategories.name}}</p>
+            <p>Type : {{post.idTypes.name}}</p>
+            <p>Found At : {{post.area}}</p>
+            <p>Found By : {{post.idUsers.username}}</p>
+            <p>Time : {{post.createdDate}}</p>
+    
+        </div>
+    </div>
+{% endblock content %}

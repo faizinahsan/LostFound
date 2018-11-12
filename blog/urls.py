@@ -6,9 +6,8 @@ urlpatterns = [
     path('kategori/', views.kategori,name='blog-kategori'),
     path('masuk/', views.masuk ,name='blog-masuk'),
     path('post/', views.dev_post ,name='blog-post'),
-    path("profile/", views.profile, name="blog-profile"),
-    path("editprofile/", views.edit_profile, name="blog-editprofile"),
     path("search/", views.search, name="blog-search"),
     path("searchCat/<idCat>/", views.searchCat, name="blog-search-cat"),
-    path("searchTypes/<idTypes>/", views.searchTypes, name="blog-search-types"),
+    path("searchTypes/<idType>/", views.searchTypes, name="blog-search-types"),
+    path("deskripsi/<idPost>/", views.detailView, name="blog-deskripsi"),
 ]

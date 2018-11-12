@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from users.forms import RegistrationForm
+from blog.models import Post
 from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 def register(request):
@@ -17,3 +18,13 @@ def register(request):
         else:
             form = RegistrationForm()
     return render(request,'users/masuk.html',{'form':form})
+
+def profile(request):
+    # username = request.user.username
+    context = {
+        'posts': Post.objects.filter(idUsers = request.user.pk).order_by('-createdDate')
+    }    
+    return render(request,'users/profile.html',context)
+
+def edit_profile(request):
+    return render(request,'users/editprofile.html')

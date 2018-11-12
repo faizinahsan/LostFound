@@ -23,7 +23,11 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', include('blog.urls')),
     path('admin/', admin.site.urls),
+    path("profile/", user_views.profile, name="blog-profile"),
+    path("editprofile/", user_views.edit_profile, name="blog-editprofile"),
     path('register/', user_views.register,name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/masuk.html'),name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+if settings.DEBUG :
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

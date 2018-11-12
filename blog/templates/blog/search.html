@@ -31,13 +31,15 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-2 col-md-2">
-                            <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg" alt="" class="img-rounded img-responsive" />
+                            <img src="{{post.image.url}}" alt="" class="img-rounded img-responsive" />
                         </div>
-            
+                    
                         <div class="col-sm-4 col-md-4">
-                            <blockquote>
-                                <h3 style="color :coral">{{post.title}}</h3> <small><cite>Gotham, United Kingdom <i class="glyphicon glyphicon-map-marker"></i></cite></small>
-                            </blockquote>
+                            <a href="{% url 'blog-deskripsi' post.pk %} " style="color :coral">
+                                <blockquote>
+                                    <h3 style="color :coral">{{post.title}}</h3> <small><cite>Gotham, United Kingdom <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                                </blockquote>
+                            </a>
                         </div>
                     </div>
             

@@ -55,27 +55,29 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <p>Find all posts made by ....</p>
+                                        <p>Find all posts made by {{user.username}}</p>
                                     </div>
                                 </div>
                             </div>
     
-    
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <p>20-10-2018 11:55</p>
-                                    </div>
-    
-                                    <div class="panel-body">
-                                        <h4>Bruce Wayne</h4>
-                                        <p>Telah ditemukan di Gotham, United Kingdom </p>
+                            {% for post in posts %}
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p>{{post.createdDate}}</p>
+                                        </div>
+                                
+                                        <div class="panel-body">
+                                            <h4>{{post.title}}</h4>
+                                            <p>Telah ditemukan di Gotham, United Kingdom </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+
     
     
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <p>20-10-2018 10:00</p>
@@ -86,7 +88,7 @@
                                         <p>Telah ditemukan di Jatinangor, Indonesia </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
     
                         </div>
                     </div>
