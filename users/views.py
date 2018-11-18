@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from users.forms import RegistrationForm
+from users.forms import RegistrationForm,UserUpdateForm,ProfileUpdateForm
 from blog.models import Post
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 # Create your views here.
 def register(request):
     form = RegistrationForm()   
@@ -18,13 +19,39 @@ def register(request):
         else:
             form = RegistrationForm()
     return render(request,'users/masuk.html',{'form':form})
-
+@login_required
 def profile(request):
     # username = request.user.username
     context = {
         'posts': Post.objects.filter(idUsers = request.user.pk).order_by('-createdDate')
     }    
     return render(request,'users/profile.html',context)
-
+@login_required
 def edit_profile(request):
-    return render(request,'users/editprofile.html')
+    u_form = UserUpdateForm()
+    p_form = ProfileUpdateForm()
+    if request.method == 'POST':
+        
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        # pas_form = PasswordChangeForm(data=request.POST, user=request.user)
+        if u_form.is_valid() and p_form.is_valid() and pas_form.is_valid():
+            u_form.save()
+            p_form.save()
+            pas_form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, f'Your account has been updated!')
+            return redirect('blog-profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+        # pas_form = PasswordChangeForm(user=request.user)
+    context = {
+        'u_form':u_form,
+        'p_form':p_form,
+        # 'pas_form':pas_form
+    }
+    return render(request,'users/editprofile.html',context)

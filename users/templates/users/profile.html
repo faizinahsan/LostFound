@@ -19,7 +19,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-2 col-md-2">
-                                    <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg"
+                                    <img src="{{user.profile.image.url}}"
                                         alt="" class="img-rounded img-responsive" />
                                 </div>
     
@@ -34,13 +34,16 @@
                                 <div class="col-sm-6 col-md-6">
                                     <a class="btn btn-success pull-right" href="{% url 'blog-editprofile' %}">Edit Profile</a>
                                 </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <a class="btn btn-success pull-right" href="{% url 'blog-create' %}">Create Post</a>
+                                </div>
                             </div>
     
                             <br>
                             <p>EMAIL : {{user.email}} </p>
-                            <p>LINE ID : </p>
-                            <p>PHONE : </p>
-                            <p>TOTAL POSTS : </p>
+                            <p>LINE ID : {{user.profile.line}}</p>
+                            <p>PHONE : {{user.profile.phone}}</p>
+                            <p>TOTAL POSTS :{{posts.count}} </p>
     
                         </div>
                     </div>

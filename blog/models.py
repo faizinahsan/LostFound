@@ -39,19 +39,24 @@ class Post(models.Model):
 	idTypes = models.ForeignKey('Types', on_delete=models.CASCADE,default=0)
 	#idTypes INT NOT NULL
 	#FOREIGN KEY (idTypes) REFERENCES Type(id)
-
+	def save(self):
+		super().save()
 class Category(models.Model):
 	name = models.CharField(max_length=255)
 	#name VARCHAR(255) NOT NULL
 	createdDate = models.DateTimeField(default=timezone.now)
 	#createdDate DATE NOT NULL
+	def __str__(self):
+		return f'{self.name} Category'
+	
 
 class Types(models.Model):
 	name = models.CharField(max_length=255)
 	#name VARCHAR(255) NOT NULL
 	createdDate = models.DateTimeField(default=timezone.now)
 	#createdDate DATE NOT NULL
-
+	def __str__(self):
+		return f'{self.name} Type'
 class Log(models.Model):
 	body = models.TextField()
 	#body TEXT NOT NULL

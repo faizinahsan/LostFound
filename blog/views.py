@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, get_object_or_404
 from .models import Post,Category,Types
+from django.contrib import messages
+from .forms import PostForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -22,7 +24,7 @@ def dev_post(request):
         'posts':Post.objects.all()
     }
     return render(request,'blog/dev_post.html',context)
-
+    
 def search(request):
     if request.method =='GET':
         search_query = request.GET.get('search_box', None)
@@ -52,8 +54,41 @@ def detailView(request,idPost):
         'post':Post.objects.get(pk = idPost)
     }
     return render(request,'blog/deskripsi.html',context)
+def createPost(request):
+    form = PostForm
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.idUsers = request.user
+            post.save()
+            return redirect('blog-deskripsi',idPost = post.pk)
+        else:
+            form = PostForm()
+    return render(request,'blog/createpost.html',{'form': form})
 # class SearchTypes(ListView):
 #     model = Post
 #     template_name = 'blog/search.html'  # <app>/<model>_<viewtype>.html
 #     context_object_name = 'posts'
 #     ordering = ['-date_posted']
+def editPost(request,idPost):
+    post = get_object_or_404(Post, pk=idPost)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.idUsers = request.user
+            post.save()
+            return redirect('blog-deskripsi', idPost=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/editpost.html', {'form': form})
+def deletePost(request,idPost):
+    post = get_object_or_404(Post, pk=idPost)
+    author = post.idUsers.username
+    if request.method == "POST" and request.user.is_authenticated and request.user.username == author:
+        post.delete()
+        messages.success(request,f'Post Successfully Deleted')
+        return redirect('blog-home')
+
+    return render(request, 'blog/deletepost.html',{'post':post})

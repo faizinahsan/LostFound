@@ -14,6 +14,9 @@
                     <div class="panel-body">Lost :{{typesLost.count}}</b></div>
                     <div class="panel-body">Found:{{typesFound.count}}</b></div>
                     <div class="panel-body"><b>Category</b></div>
+                    {% for post in posts %}
+                        <div class="panel-body"><p>{{post.idCategories.name}} : </p></div>
+                    {% endfor %}
                 </div>
             </div>
 

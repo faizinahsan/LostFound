@@ -31,5 +31,9 @@
             <p>Time : {{post.createdDate}}</p>
     
         </div>
+        {% if user.is_authenticated  and user == post.idUsers %}
+            <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
+            <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>    
+        {% endif %}
     </div>
 {% endblock content %}
