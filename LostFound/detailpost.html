@@ -51,8 +51,21 @@
                 background-size:cover;
                 background-repeat: no-repeat;
             }
+
+            .breadcrumb{
+                padding: 8px 0px;
+                background: url(../images/bg.png) no-repeat top center fixed;
+            }
+
+            .sections2 {
+                padding-top: 0px;
+                padding-bottom: 100px;
+                position: relative;
+                overflow: hidden;
+            }
             
         </style>
+
     </head>
 
     <body>
@@ -88,9 +101,29 @@
             </div><!-- /.container-fluid -->
         </nav>
   
-
         <!-- Sections -->
-        <section id="business" class="portfolio sections">
+        <section id="business" class="portfolio sections2">
+          <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb">
+                        <div class="pull-right">
+                            <form>
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <ol class="breadcrumb" style="height:100%;">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Lost</a></li>
+                            <li><a href="#">Shoes/Sandal</a></li>
+                            <li class="active">Sepatu Adidas</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+           </div>
+
           <div class="container">
                 <div class="row">
                     <!--1-->
@@ -104,15 +137,10 @@
                                     </div>-->
                             </div>
 
-                            <div class="panel-body">
-                                <div class="jumbotron">
-                                    <img src="https://i.ytimg.com/vi/iVnonpn8QT0/maxresdefault.jpg"  width="100%" height="250">
-                                </div>
-                                
-                                
+                            <div class="panel-body">                               
+                                <img src="https://i.ytimg.com/vi/iVnonpn8QT0/maxresdefault.jpg"  width="100%" height="270" style="margin-bottom: 10px">
                                 <h3>Sepatu Adidias </h3>
                                 <h5>Bandung, Jawa Barat</h5>
-                                
                             </div>
                         </div>
                     </div>
@@ -122,50 +150,46 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="col-md-3">
-                                    <p>CATEGORY</p>
-                                    <P>Shoes</P>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <p>FOUND BY</p>
-                                    <p>zelda99</p>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <p>TIME</p>
-                                    <p>Jam 11.00</p>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <p>adjhsad</p>
-                                    <p>jadha</p>
-                                </div>
-
-                                <br>
-
-                                <div class="col-md-3">
-                                        <p>CATEGORY</p>
+                                <div class="col-md-9">
+                                    <div class="col-md-4">
+                                        <p><b>CATEGORY</b></p>
                                         <P>Shoes</P>
+                                        <p><b>TYPE</b></p>
+                                        <P>Lost</p>
                                     </div>
-    
-                                    <div class="col-md-3">
-                                        <p>FOUND BY</p>
+            
+                                    <div class="col-md-4">
+                                        <p><b>FOUND BY</b></p>
+                                        <p>zelda99</p>
+                                        <p><b>FOUND AT</b></p>
                                         <p>zelda99</p>
                                     </div>
-    
-                                    <div class="col-md-3">
-                                        <p>TIME</p>
+            
+                                    <div class="col-md-4">
+                                        <p><b>TIME</b></p>
                                         <p>Jam 11.00</p>
                                     </div>
-    
-                                    <div class="col-md-3">
-                                        <p>daksjdks</p>
-                                        <p>jsajdhash</p>
-                                    </div>
+            
+                                </div>
 
-                                <legend> </legend>
+                                <div class="col-md-3">
+                                    <div class="card" style="width: 18rem;">
+                                        <img class="card-img-top" src="..." alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-text">Zelda99</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <br>
+                                    <legend></legend>
+                                    <div class="col-md-4">
+                                        <p><b>PHOTOS</b></p>
+                                    </div>
+                                </div>
     
+                               
                                 
                             </div>
                         </div>
