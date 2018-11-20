@@ -52,6 +52,14 @@
                 position: absolute;
             }
 
+            @media (min-width: 992px) {
+                .form-horizontal .control-label{
+                    /* text-align:right; */
+                    text-align:left;
+                    padding-left: 40px;
+                }
+            }
+
         </style>
     </head>
 
@@ -115,17 +123,24 @@
                               
                                       <!-- Name input-->
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label" for="name">Category</label>
+                                        <label class="col-md-3 control-label" for="category">Category</label>
                                         <div class="col-md-9">
-                                          <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
+                                            <select class="form-control" id="sel1">
+                                                <option>Shoes/Sandal</option>
+                                                <option>Bag/Trash</option>
+                                                <option>Gadget</option>
+                                            </select>
                                         </div>
                                       </div>
                               
                                       <!-- Email input-->
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label" for="email">Type</label>
+                                        <label class="col-md-3 control-label" for="type">Type</label>
                                         <div class="col-md-9">
-                                          <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
+                                            <select class="form-control" id="sel2">
+                                                <option>Lost</option>
+                                                <option>Found</option>
+                                            </select>
                                         </div>
                                       </div>
                               
@@ -133,7 +148,7 @@
                                       <div class="form-group">
                                         <label class="col-md-3 control-label" for="message">Found At</label>
                                         <div class="col-md-9">
-                                          <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
+                                          <textarea class="form-control" id="message" name="message" placeholder="Please enter your description here..." rows="5"></textarea>
                                         </div>
                                       </div>
                                       
@@ -147,7 +162,7 @@
                                       
                                       <!-- Message body -->
                                       <div class="form-group">
-                                        <label class="col-md-3 control-label" for="message"></label>
+                                        <label class="col-md-3 control-label" for="message">Time</label>
                                         <div class="col-md-9">
                                             <input class="form-control" type="time" value="13:45:00" id="example-time-input">
                                         </div>
@@ -171,7 +186,7 @@
                                       <!-- Form actions -->
                                       <div class="form-group">
                                             <label class="col-md-3 control-label" for="message"></label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-5">
                                               <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                                             </div>
                                           </div>
