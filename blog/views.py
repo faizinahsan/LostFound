@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Post,Category,Types
 from django.contrib import messages
-from .forms import PostForm
+from .forms import PostForm, PostLogForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -53,7 +53,12 @@ def detailView(request,idPost):
     context={
         'post':Post.objects.get(pk = idPost)
     }
-    return render(request,'blog/deskripsi.html',context)
+    return render(request,'blog/detailpost.html',context)
+def detailKontakView(request,idPost):
+    context={
+        'post':Post.objects.get(pk = idPost)
+    }
+    return render(request,'blog/kontak.html',context)
 def createPost(request):
     form = PostForm
     if request.method == 'POST':
@@ -65,7 +70,7 @@ def createPost(request):
             return redirect('blog-deskripsi',idPost = post.pk)
         else:
             form = PostForm()
-    return render(request,'blog/createpost.html',{'form': form})
+    return render(request,'blog/post.html',{'form': form})
 # class SearchTypes(ListView):
 #     model = Post
 #     template_name = 'blog/search.html'  # <app>/<model>_<viewtype>.html
@@ -82,7 +87,7 @@ def editPost(request,idPost):
             return redirect('blog-deskripsi', idPost=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/editpost.html', {'form': form})
+    return render(request, 'blog/editpost.html', {'form': form,'post':post})
 def deletePost(request,idPost):
     post = get_object_or_404(Post, pk=idPost)
     author = post.idUsers.username

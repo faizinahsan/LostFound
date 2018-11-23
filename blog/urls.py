@@ -10,6 +10,7 @@ urlpatterns = [
     path("searchCat/<idCat>/", views.searchCat, name="blog-search-cat"),
     path("searchTypes/<idType>/", views.searchTypes, name="blog-search-types"),
     path("deskripsi/<idPost>/", views.detailView, name="blog-deskripsi"),
+    path("deskripsi/<idPost>/kontak", views.detailKontakView, name="blog-kontak"),
     path("create/", views.createPost, name="blog-create"),
     path("create/<int:idPost>/edit", views.editPost, name="blog-edit"),
     path("create/<int:idPost>/delete", views.deletePost, name="blog-delete"),

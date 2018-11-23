@@ -71,8 +71,10 @@
                                         </div>
                                 
                                         <div class="panel-body">
-                                            <h4>{{post.title}}</h4>
-                                            <p>Telah ditemukan di Gotham, United Kingdom </p>
+                                            <a href="{% url 'blog-deskripsi' post.pk %}" style="color:inherit">
+                                                <h4>{{post.title}}</h4>
+                                                <p>Telah ditemukan di Gotham, United Kingdom </p>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

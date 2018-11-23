@@ -37,11 +37,11 @@ def edit_profile(request):
                                    request.FILES,
                                    instance=request.user.profile)
         # pas_form = PasswordChangeForm(data=request.POST, user=request.user)
-        if u_form.is_valid() and p_form.is_valid() and pas_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            pas_form.save()
-            update_session_auth_hash(request, form.user)
+            # pas_form.save()
+            # update_session_auth_hash(request, form.user)
             messages.success(request, f'Your account has been updated!')
             return redirect('blog-profile')
 

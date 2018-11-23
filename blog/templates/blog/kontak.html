@@ -29,17 +29,12 @@
             <p>Found At : {{post.area}}</p>
             <p>Found By : {{post.idUsers.username}}</p>
             <p>Time : {{post.createdDate}}</p>
+
+            <p>Email : {{post.idUsers.email}}</p>
+            <p>Phone : {{post.idUsers.profile.phone}}</p>
+            <p>Line : {{post.idUsers.profile.line}}</p>
     
         </div>
-        {% if user.is_authenticated %}
-            <form id="contact" method="POST" action="{% url 'blog-deskripsi' idPost=post.pk %}" role="form"style="display: block;">
-                {% csrf_token %}
-                <input type="hidden" name="body" id="body" value="Profil Anda Dilihat oleh {{user.username}}">                            
-                <input type="hidden" name="idPosts" id="idPosts" value="{{post.pk}}">                            
-                <button type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-register">Contact</button>            
-            </form>
-            {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
-        {% endif %}
         {% if user.is_authenticated  and user == post.idUsers %}
             <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
             <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>    
