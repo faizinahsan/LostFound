@@ -1,0 +1,187 @@
+{% extends 'blog/base.html' %}    <!-- Sections -->
+{% block content %}
+    <section id="business" class="portfolio sections2">
+          <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb">
+                        <div class="pull-right">
+                            <form action="{%url 'blog-search'%}" method="GET">
+                                <input type="text" placeholder="Search.." name="search_box" id="search_box">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <ol class="breadcrumb" style="height:100%;">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Lost</a></li>
+                            <li><a href="#">Shoes/Sandal</a></li>
+                            <li class="active">Sepatu Adidas</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+           </div>
+
+          <div class="container">
+                <div class="row">
+                    <!--1-->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                   <!-- <div class="pull-right">
+                                        <button type="button" class="close" aria-label="Close">
+                                          <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>-->
+                            </div>
+
+                            <div class="panel-body">                               
+                                <img src="{{post.image.url}}"  width="100%" height="270" style="margin-bottom: 10px">
+                                <h3>{{post.title}}</h3>
+                                <h5>Bandung, Jawa Barat</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end1-->
+                    
+                    <!--2-->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-9">
+                                    <div class="col-md-4">
+                                        <p><b>CATEGORY</b></p>
+                                        <P>{{post.idCategories.name}}</P>
+                                        <p><b>TYPE</b></p>
+                                        <P>{{post.idTypes.name}}</p>
+                                    </div>
+            
+                                    <div class="col-md-4">
+                                        <p><b>FOUND BY</b></p>
+                                        <p>{{post.idUsers.username}}</p>
+                                        <p><b>FOUND AT</b></p>
+                                        <p>{{post.body}}</p>
+                                    </div>
+            
+                                    <div class="col-md-4">
+                                        <p><b>TIME</b></p>
+                                        <p>{{post.createdDate}}</p>
+                                    </div>
+            
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card" style="width: 18rem;">
+                                        {# <img class="card-img-top" src="{{post.idUsers.profile.image.url}}" alt="Card image cap"> #}
+                                        <div class="card-body">
+                                            <p class="card-text">{{post.idUsers.username}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <br>
+                                    <legend></legend>
+                                    <div class="col-md-4">
+                                        <p><b>PHOTOS</b></p>
+                                    </div>
+                                </div>
+    
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--end 2-->
+
+                </div>
+                {% if user.is_authenticated %}
+                <form id="contact" method="POST" action="{% url 'blog-deskripsi' idPost=post.pk %}" role="form"style="display: block;">
+                    {% csrf_token %}
+                    <input type="hidden" name="body" id="body" value="Profil Anda Dilihat oleh {{user.username}}">                            
+                    <input type="hidden" name="idPosts" id="idPosts" value="{{post.pk}}">                            
+                    <button type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-register">Contact</button>            
+                </form>
+                {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
+            {% endif %}
+            {% if user.is_authenticated  and user == post.idUsers %}
+                <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
+                <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>    
+            {% endif %}
+          </div>
+          
+        </section>
+
+
+        <section id="contact" class="contact sections">
+            <div class="container">
+                <div class="row">
+                    <div class="main_contact whitebackground">
+                        <div class="head_title text-center">
+                            <h2>GET IN TOUCH</h2>
+							<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                        </div>
+                        <div class="contact_content">
+                            <div class="col-md-6">
+                                <div class="single_left_contact">
+                                    <form action="#" id="formid">
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" placeholder="first name" required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
+                                        </div>
+
+                                        <div class="center-content">
+                                            <input type="submit" value="Submit" class="btn btn-default">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single_right_contact">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+
+                                    <div class="contact_address margin-top-40">
+                                        <span>1600 Pennsylvania Ave NW, Washington,</span>
+                                        <span>DC 20500, United States of America.</span> 
+                                        <span class="margin-top-20">T: (202) 456-1111</span> 
+                                        <span>M: (202) 456-1212</span> 
+                                    </div>
+
+                                    <div class="contact_socail_bookmark">
+                                        <a href=""><i class="fa fa-facebook"></i></a>
+                                        <a href=""><i class="fa fa-twitter"></i></a>
+                                        <a href=""><i class="fa fa-google"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End of Contact Section -->
+
+
+		
+		<div class="scrollup">
+			<a href="#"><i class="fa fa-chevron-up"></i></a>
+		</div>
+
+
+        <script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
+
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/modernizr.js"></script>
+        <script src="assets/js/main.js"></script>
+{% endblock content %}
+    

@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h2>Are You Sure To Delete This Post?</h2>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        <button type="submit" class="save btn btn-default" value = "Yes" >Yes</button>
+        <a class="btn btn-default" href="{% url 'blog-deskripsi' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Cancel</span></a>    
+    </form>
+{% endblock content %}

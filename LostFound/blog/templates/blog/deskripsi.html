@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <!-- <div class="pull-right">
+                                                                    <button type="button" class="close" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                    </button>
+                                                                </div>-->
+        </div>
+    
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 col-md-2">
+                    <img src="{{post.image.url}}" alt="" class="img-rounded img-responsive" />
+                </div>
+    
+                <div class="col-sm-4 col-md-4">
+                    <blockquote>
+                        <h3 style="color :coral">{{post.title}}</h3> <small><cite>Gotham, United Kingdom <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                    </blockquote>
+                </div>
+            </div>
+            <article>{{post.body}}</article>
+            <br>
+            <p>Category : {{post.idCategories.name}}</p>
+            <p>Type : {{post.idTypes.name}}</p>
+            <p>Found At : {{post.area}}</p>
+            <p>Found By : {{post.idUsers.username}}</p>
+            <p>Time : {{post.createdDate}}</p>
+    
+        </div>
+        {% if user.is_authenticated %}
+            <form id="contact" method="POST" action="{% url 'blog-deskripsi' idPost=post.pk %}" role="form"style="display: block;">
+                {% csrf_token %}
+                <input type="hidden" name="body" id="body" value="Profil Anda Dilihat oleh {{user.username}}">                            
+                <input type="hidden" name="idPosts" id="idPosts" value="{{post.pk}}">                            
+                <button type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-register">Contact</button>            
+            </form>
+            {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
+        {% endif %}
+        {% if user.is_authenticated  and user == post.idUsers %}
+            <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
+            <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>    
+        {% endif %}
+    </div>
+{% endblock content %}

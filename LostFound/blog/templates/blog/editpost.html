@@ -1,0 +1,255 @@
+ {% extends "blog/base.html" %}
+ {% load static %}
+ {% block content %}
+  <!-- Sections -->
+        <section id="business" class="portfolio sections">
+          <div class="container">
+                <div class="row">
+                    <!--1-->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                   <!-- <div class="pull-right">
+                                        <button type="button" class="close" aria-label="Close">
+                                          <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>-->
+                            </div>
+
+                            <div class="panel-body">
+                                
+                                <h2>New Post</h2>
+                                <br>
+
+
+                                <form class="form-horizontal" action="{% url 'blog-edit' idPost=post.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    <fieldset>
+                                                                    <!-- Message body -->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="title">Nama Barang</label>
+                                        <div class="col-md-9">
+                                          <textarea class="form-control" id="title" name="title" placeholder="Masukan Nama barang" rows="1">{{post.title}}</textarea>
+                                        </div>
+                                      </div>
+
+                                      <!-- Name input-->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="category">Category</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="idCategories" name="idCategories">
+                                                <option value ="1">Laptop</option>
+                                                <option value ="2">Mobil</option>
+                                                <option value ="3">Motor</option>
+                                            </select>
+                                        </div>
+                                      </div>
+                              
+                                      <!-- Email input-->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="type">Type</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="idTypes" name="idTypes">
+                                                <option value="1">Hilang</option>
+                                                <option value="2">Ditemukan</option>
+                                            </select>
+                                        </div>
+                                      </div>
+                              
+                                      <!-- Message body -->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="body">Found At</label>
+                                        <div class="col-md-9">
+                                          <textarea class="form-control" id="body" name="body" placeholder="Please enter your description here..." rows="5">{{post.body}}</textarea>
+                                        </div>
+                                      </div>
+                                      
+                                     <!-- Message body -->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Date</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                                        </div>
+                                      </div>
+                                      
+                                      <!-- Message body -->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Time</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                                        </div>
+                                      </div>
+                              
+                                      <!-- Choose File -->
+                                      <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Photos</label>
+                                        <div class="col-md-9 text-left">
+                                                {% comment %} <input type="file" name="img[]" class="file"> {% endcomment %}
+                                                <div class="input-group col-xs-12">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                                                <input type="text" class="form-control input-lg" disabled placeholder="Upload Image">
+                                                <span class="input-group-btn"><input class="browse btn btn-primary" type="file" name="image" value="{{post.image.url}}">
+                                                    <i class="glyphicon glyphicon-search">Browse</i>
+                                                </span>
+                                              </div>
+                                        </div>
+                                      </div>
+
+                                      <!-- Form actions -->
+                                      <div class="form-group">
+                                            <label class="col-md-3 control-label" for="message"></label>
+                                            <div class="col-md-5">
+                                              <button type="submit" class="btn btn-primary btn-lg">POST</button>
+                                            </div>
+                                          </div>
+
+                                    </fieldset>
+                                </form>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--end1-->
+                    
+                </div>
+          </div>
+        </section>
+
+        <section id="contact" class="contact sections">
+            <div class="container">
+                <div class="row">
+                    <div class="main_contact whitebackground">
+                        <div class="head_title text-center">
+                            <h2>GET IN TOUCH</h2>
+							<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                        </div>
+                        <div class="contact_content">
+                            <div class="col-md-6">
+                                <div class="single_left_contact">
+                                    <form action="#" id="formid">
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" placeholder="first name" required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
+                                        </div>
+
+                                        <div class="center-content">
+                                            <input type="submit" value="Submit" class="btn btn-default">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single_right_contact">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+
+                                    <div class="contact_address margin-top-40">
+                                        <span>1600 Pennsylvania Ave NW, Washington,</span>
+                                        <span>DC 20500, United States of America.</span> 
+                                        <span class="margin-top-20">T: (202) 456-1111</span> 
+                                        <span>M: (202) 456-1212</span> 
+                                    </div>
+
+                                    <div class="contact_socail_bookmark">
+                                        <a href=""><i class="fa fa-facebook"></i></a>
+                                        <a href=""><i class="fa fa-twitter"></i></a>
+                                        <a href=""><i class="fa fa-google"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End of Contact Section -->
+
+
+        <section id="footer-menu" class="sections footer-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-menu-wrapper">
+
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="menu-item">
+                                    <h5>Quick Links</h5>
+                                    <ul>
+                                        <li>POWER BI DESKTOP</li>
+                                        <li>MOBILE</li>
+                                        <li>SEE ALL DOWNLOADS</li>
+                                        <li>POWER BI DESKTOP</li>
+                                        <li>MOBILE</li>
+                                        <li>SEE ALL DOWNLOADS</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="menu-item">
+                                    <h5>Legal</h5>
+                                    <ul>
+                                        <li>PRIVACY & COOKIES</li>
+                                        <li>TERMS OF USE</li>
+                                        <li>TRADEMARKS</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="menu-item">
+                                    <h5>Information</h5>
+                                    <ul>
+                                        <li>SUPPORT</li>
+                                        <li>DEVELOPERS</li>
+                                        <li>BLOG</li>
+                                        <li>NEWSLETTER</li>
+                                        <li>PYRAMID ANALYTICS</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="menu-item">
+                                <h5>Newsletter</h5>
+                                <p>Insights await in your company's data. Bring them into focus with BlueLance.</p>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter your email address">
+                                    <input type="submit" class="form-control" value="Use It Free">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            $(document).on('click', '.browse', function(){
+                var file = $(this).parent().parent().parent().find('.file');
+                file.trigger('click');
+            });
+            $(document).on('change', '.file', function(){
+                $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+            });
+        </script>
+
+
+        <script src="{% static 'js/vendor/jquery-1.11.2.min.js' %}"></script>
+        <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/modernizr.js'%}"></script>
+        <script src="{% static 'js/main.js' %}"></script>    
+{% endblock content %}
