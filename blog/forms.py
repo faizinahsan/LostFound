@@ -9,8 +9,8 @@ class PostForm(forms.ModelForm):
 class PostLogForm(forms.ModelForm):
     class Meta:
         model = Log
-        fields = ('body','idUsers','idPosts')
-        widgets= {
-            'body':forms.HiddenInput(),
-            'idPosts': forms.HiddenInput()
-        }
+        fields = ('body','idUsers','idPosts','idPostUser')
+        # widgets= {
+        #     'body':forms.HiddenInput(),
+        #     'idPosts': forms.HiddenInput()
+        # }

@@ -89,7 +89,17 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-    
+                            {% comment %} <p>Others Who Have See Your Account is {{logs.count}} </p> {% endcomment %}
+                    
+                            {% for log in logs %}
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p>Other Who See Your Account is {{log.idUsers.username}} in post of title {{log.idPosts.title}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -97,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             {% for post in posts %}
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
@@ -114,7 +124,7 @@
 
 
                                         <div class="panel-body">
-                                            <a href="#" class="button1">Edit Post</a>
+                                            <a href="{% url 'blog-edit' post.pk %}" class="button1">Edit Post</a>
                                             <a href="#" class="button2">Delete Post</a>
                                         </div>
 

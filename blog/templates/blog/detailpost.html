@@ -95,11 +95,13 @@
                     <!--end 2-->
 
                 </div>
-                {% if user.is_authenticated %}
-                <form id="contact" method="POST" action="{% url 'blog-deskripsi' idPost=post.pk %}" role="form"style="display: block;">
+                {% if user.is_authenticated and user != post.idUsers %}
+                <form id="contact" method="POST" role="form"style="display: block;" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="hidden" name="body" id="body" value="Profil Anda Dilihat oleh {{user.username}}">                            
-                    <input type="hidden" name="idPosts" id="idPosts" value="{{post.pk}}">                            
+                    <input name = "body" class="form-control" type="hidden" value="Kontak Dilihat Oleh {{user.username}}" id="example-time-input">
+                    <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
+                    <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
+                    <input name = "idPostUser" class="form-control" type="number" value="{{post.idUsers.pk}}" id="example-time-input">
                     <button type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-register">Contact</button>            
                 </form>
                 {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}

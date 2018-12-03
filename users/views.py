@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from users.forms import RegistrationForm,UserUpdateForm,ProfileUpdateForm
-from blog.models import Post
+from blog.models import Post,Log
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 # Create your views here.
@@ -23,7 +23,8 @@ def register(request):
 def profile(request):
     # username = request.user.username
     context = {
-        'posts': Post.objects.filter(idUsers = request.user.pk).order_by('-createdDate')
+        'posts': Post.objects.filter(idUsers = request.user.pk).order_by('-createdDate'),
+        'logs' : Log.objects.filter(idPostUser = request.user.pk),
     }    
     return render(request,'users/profile.html',context)
 @login_required

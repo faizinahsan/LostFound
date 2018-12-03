@@ -62,9 +62,10 @@ class Log(models.Model):
 	#body TEXT NOT NULL
 	createdDate = models.DateTimeField(default=timezone.now)
 	#createdDate DATE NOT NULL
-	idUsers = models.ForeignKey(User, on_delete=models.CASCADE)
+	idUsers = models.ForeignKey(User,related_name='user_melihat', on_delete=models.CASCADE,default=0)
 	#idUsers INT NOT NULL
 	#FOREIGN KEY (idUsers) REFERENCES User(id)
 	idPosts = models.ForeignKey(Post, on_delete=models.CASCADE)
 	#idPosts INT NOT NULL
 	#FOREIGN KEY (idPosts) REFERENCES Post(id)
+	idPostUser = models.ForeignKey(User,related_name='user_dilihat', on_delete=models.CASCADE,default=0)
