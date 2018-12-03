@@ -1,6 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
+#from django.contrib.gis.db import models
+#from django.contrib.gis.geos import Point
+#from location_field.models.spatial import LocationField
+
+from osm_field.fields import LatitudeField, LongitudeField, OSMField
+
 # Create your models here.
 # class Post(models.Model):
 #     title = models.CharField(max_length=50)
@@ -68,3 +75,14 @@ class Log(models.Model):
 	idPosts = models.ForeignKey(Post, on_delete=models.CASCADE)
 	#idPosts INT NOT NULL
 	#FOREIGN KEY (idPosts) REFERENCES Post(id)
+
+#class Place(models.Model):
+#    city = models.CharField(max_length=255)
+#    location = LocationField(based_fields=['city'], zoom=7, default=Point(1.0, 1.0))
+#    objects = models.GeoManager()
+
+class MyModel(models.Model):
+    location = OSMField()
+    location_lat = LatitudeField()
+    location_lon = LongitudeField()
+

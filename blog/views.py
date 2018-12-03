@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Post,Category,Types
+from .models import Post,Category,Types, MyModel
 from django.contrib import messages
-from .forms import PostForm, PostLogForm
+from .forms import PostForm, PostLogForm, MyModelForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -97,3 +97,7 @@ def deletePost(request,idPost):
         return redirect('blog-home')
 
     return render(request, 'blog/deletepost.html',{'post':post})
+
+class MyCreateView(CreateView):
+    form_class = MyModelForm
+    model = MyModel

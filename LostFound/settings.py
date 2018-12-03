@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'location_field.apps.DefaultConfig',
+    'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,13 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL ='blog-home'
 LOGIN_URL='login'
+
+#GDAL_LIBRARY_PATH = '..\django_env\Scripts'
+
+LEAFLET_CONFIG = {
+    # conf here
+    'DEFAULT_CENTER': (-6.0, 111.0),
+    'DEFAULT_ZOOM': 16,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
+}

@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}    <!-- Sections -->
+{% load leaflet_tags %}
 {% block content %}
     <section id="business" class="portfolio sections2">
           <div class="container">
@@ -12,9 +13,9 @@
                             </form>
                         </div>
                         <ol class="breadcrumb" style="height:100%;">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Lost</a></li>
-                            <li><a href="#">Shoes/Sandal</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">{{post.idTypes.name}}</a></li>
+                            <li><a href="/kategori/">{{post.idCategories.name}}</a></li>
                             <li class="active">Sepatu Adidas</li>
                         </ol>
                     </div>
@@ -35,7 +36,7 @@
                                     </div>-->
                             </div>
 
-                            <div class="panel-body">                               
+                            <div class="panel-body"> 
                                 <img src="{{post.image.url}}"  width="100%" height="270" style="margin-bottom: 10px">
                                 <h3>{{post.title}}</h3>
                                 <h5>Bandung, Jawa Barat</h5>
@@ -84,6 +85,7 @@
                                     <legend></legend>
                                     <div class="col-md-4">
                                         <p><b>PHOTOS</b></p>
+                                        {% leaflet_map "yourmap" %}
                                     </div>
                                 </div>
     
