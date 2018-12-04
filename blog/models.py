@@ -1,6 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
+#from django.contrib.gis.db import models
+#from django.contrib.gis.geos import Point
+#from location_field.models.spatial import LocationField
+
+# from osm_field.fields import LatitudeField, LongitudeField, OSMField
+
 # Create your models here.
 # class Post(models.Model):
 #     title = models.CharField(max_length=50)

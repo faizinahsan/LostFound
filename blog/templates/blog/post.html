@@ -55,7 +55,7 @@
                                             </select>
                                         </div>
                                       </div>
-
+<!--
                                       <div class="form-group">
                                         <label class="col-md-3 control-label" for="title">Latitude</label>
                                         <div class="col-md-3">
@@ -67,7 +67,7 @@
                                           <textarea class="form-control" id="title" name="longtitude" placeholder="Enter longtitude" rows="1"></textarea>
                                         </div>
                                       </div>
-
+-->
                                        <div class="form-group">
                                         <label class="col-md-3 control-label" for="area">Area</label>
                                         <div class="col-md-9">
@@ -113,9 +113,54 @@
                                                 </span>
                                               </div>
                                         </div>
+
                                       </div>
 
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="message">Maps</label>
+                                        <div class="col-md-9 text-left">
+                                            <div id="mapid" style="width: 600px; height: 400px; position: relative; outline: none;"></div>
+                                        </div>
+                                    </div>
+                            
+                                        <input id="lat" type="hidden" name="latitude">
+                                        <input id="lng" type="hidden" name="longitude">
+                                      
+                                      <script>
+                                            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+                                            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                                                maxZoom: 18,
+                                                id: 'mapbox.streets',
+                                                accessToken: 'pk.eyJ1IjoiY3JlZWV3cyIsImEiOiJjanA5OThwNXoxanYzM2tvM2JmcGFvaTQzIn0.G-5bcImruBDxNVAiomn7AA'
+                                            }).addTo(mymap);
+
+                                            var markerOptions = {
+                                                title: "MyLocation",
+                                                clickable: true,
+                                                draggable: true
+                                             }
+                                             var latLng;
+
+                                            var marker = L.marker([51.5, -0.09], markerOptions).addTo(mymap);
+                                           
+                                            marker.on('dragend', () =>{
+                                                latLng = marker.getLatLng()
+                                                console.log("LatLng = " ,latLng)
+                                                
+                                                var inputLat = document.querySelector("#lat")
+                                                var inputLng = document.querySelector("#lng")
+                                                
+                                                // kalau ada nilainya
+                                                if(latLng.lat && latLng.lng ){
+                                                    inputLat.value = latLng.lat
+                                                    inputLng.value = latLng.lng
+                                                }
+                                            });
+                                        </script>
+
                                       <!-- Form actions -->
+                                      
                                       <div class="form-group">
                                             <label class="col-md-3 control-label" for="message"></label>
                                             <div class="col-md-5">

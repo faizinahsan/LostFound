@@ -23,7 +23,7 @@ def register(request):
         else:
             form = RegistrationForm()
             # p_form = RegistrationProfile()
-    return render(request,'users/masuk.html',{'form':form,'p_form':p_form})
+    return render(request,'users/masuk.html',{'form':form})
 @login_required
 def profile(request):
     # username = request.user.username
