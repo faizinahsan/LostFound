@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 #from django.contrib.gis.geos import Point
 #from location_field.models.spatial import LocationField
 
-from osm_field.fields import LatitudeField, LongitudeField, OSMField
+# from osm_field.fields import LatitudeField, LongitudeField, OSMField
 
 # Create your models here.
 # class Post(models.Model):
@@ -69,20 +69,10 @@ class Log(models.Model):
 	#body TEXT NOT NULL
 	createdDate = models.DateTimeField(default=timezone.now)
 	#createdDate DATE NOT NULL
-	idUsers = models.ForeignKey(User, on_delete=models.CASCADE)
+	idUsers = models.ForeignKey(User,related_name='user_melihat', on_delete=models.CASCADE,default=0)
 	#idUsers INT NOT NULL
 	#FOREIGN KEY (idUsers) REFERENCES User(id)
 	idPosts = models.ForeignKey(Post, on_delete=models.CASCADE)
 	#idPosts INT NOT NULL
 	#FOREIGN KEY (idPosts) REFERENCES Post(id)
-
-#class Place(models.Model):
-#    city = models.CharField(max_length=255)
-#    location = LocationField(based_fields=['city'], zoom=7, default=Point(1.0, 1.0))
-#    objects = models.GeoManager()
-
-class MyModel(models.Model):
-    location = OSMField()
-    location_lat = LatitudeField()
-    location_lon = LongitudeField()
-
+	idPostUser = models.ForeignKey(User,related_name='user_dilihat', on_delete=models.CASCADE,default=0)

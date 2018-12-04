@@ -66,8 +66,7 @@
                                             role="form" style="display: none;">
                                             {% csrf_token %}
                                             <!-- {{ form.as_p }} -->
-                                            <div class="form-group">
-                                                
+                                            <div class="form-group">                                                
                                                 <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                             </div>
                                             <div class="form-group">
@@ -79,6 +78,12 @@
                                             <div class="form-group">
                                                 <input type="password" name="password2" id="password2" tabindex="2" class="form-control" placeholder="Confirm Password">
                                             </div>
+                                            {% comment %} <div class="form-group">                                                
+                                                <input type="text" name="phone" id="phone" tabindex="1" class="form-control" placeholder="Phone Number" value="">
+                                            </div>
+                                            <div class="form-group">                                                
+                                                <input type="text" name="line" id="line" tabindex="1" class="form-control" placeholder="Line ID" value="">
+                                            </div>                                             {% endcomment %}
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">

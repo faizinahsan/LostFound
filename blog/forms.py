@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Log, MyModel
+from .models import Post,Log
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -11,12 +11,8 @@ class PostForm(forms.ModelForm):
 class PostLogForm(forms.ModelForm):
     class Meta:
         model = Log
-        fields = ('body','idUsers','idPosts')
-        widgets= {
-            'body':forms.HiddenInput(),
-            'idPosts': forms.HiddenInput()
-        }
-class MyModelForm(forms.ModelForm):
-    class Meta:
-        fields = ('location', 'location_lat', 'location_lon', )
-        model = MyModel
+        fields = ('body','idUsers','idPosts','idPostUser')
+        # widgets= {
+        #     'body':forms.HiddenInput(),
+        #     'idPosts': forms.HiddenInput()
+        # }

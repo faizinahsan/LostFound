@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Post,Category,Types, MyModel
+from .models import Post,Category,Types,Log
 from django.contrib import messages
-from .forms import PostForm, PostLogForm, MyModelForm
+from .forms import PostForm, PostLogForm
+from django.http import HttpResponse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -50,15 +51,31 @@ def searchTypes(request,idType):
     }
     return render(request,'blog/search.html',context)
 def detailView(request,idPost):
+    # form = PostLogForm()
+    if request.method == "POST":
+        form = PostLogForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('idUsers')
+            body = form.cleaned_data.get('body')
+            idPosts = form.cleaned_data.get('idPosts')
+            idUserPost = form.cleaned_data.get('idUserPost')
+            messages.success(request,f'Kontak Di Akses Oleh {username}!')
+            messages.success(request,f'Dengan Isi {body}!')
+            messages.success(request,f'Di Post ke {idPosts}!')
+            messages.success(request,f'User yang dilihat adalah {idUserPost}!')
+            # return redirect('blog-home')
+    else:
+        form = PostLogForm()
+
     context={
-        'post':Post.objects.get(pk = idPost)
+        'form':form,
+        'post':Post.objects.get(pk = idPost),
+        'contacts':Log.objects.filter(idPosts = idPost),
     }
     return render(request,'blog/detailpost.html',context)
-def detailKontakView(request,idPost):
-    context={
-        'post':Post.objects.get(pk = idPost)
-    }
-    return render(request,'blog/kontak.html',context)
+def detailKontakView(request):
+    return HttpResponse('<h1>entered text: </h1>'+ request.POST.get['body',False])
 def createPost(request):
     form = PostForm
     if request.method == 'POST':
@@ -97,7 +114,3 @@ def deletePost(request,idPost):
         return redirect('blog-home')
 
     return render(request, 'blog/deletepost.html',{'post':post})
-
-class MyCreateView(CreateView):
-    form_class = MyModelForm
-    model = MyModel

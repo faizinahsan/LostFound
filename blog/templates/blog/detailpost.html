@@ -1,6 +1,35 @@
 {% extends 'blog/base.html' %}    <!-- Sections -->
 {% load leaflet_tags %}
 {% block content %}
+<style type="text/css">
+    .button1 {
+        background-color: #5bc0de;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button2 {
+        background-color: #d9534f;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+</style>
+
     <section id="business" class="portfolio sections2">
           <div class="container">
             <div class="row">
@@ -38,9 +67,20 @@
 
                             <div class="panel-body"> 
                                 <img src="{{post.image.url}}"  width="100%" height="270" style="margin-bottom: 10px">
-                                <h3>{{post.title}}</h3>
-                                <h5>Bandung, Jawa Barat</h5>
+                                <div class="col-md-6">
+                                    <h3>{{post.title}}</h3>
+                                    <h5>Bandung, Jawa Barat</h5>
+                                </div>
+
+                                <div class="col-md-6 pull-right">
+                                   {% comment %}  <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
+                                    <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>   {% endcomment %}
+                                    <a href="{% url 'blog-edit' idPost=post.pk %}" class="button1">Edit Post</a>   
+                                    <a href="{% url 'blog-delete' idPost=post.pk %}" class="button2">Delete Post</a>    
+                                </div>
+                                
                             </div>
+                            
                         </div>
                     </div>
                     <!--end1-->
@@ -75,15 +115,24 @@
                                         {# <img class="card-img-top" src="{{post.idUsers.profile.image.url}}" alt="Card image cap"> #}
                                         <div class="card-body">
                                             <p class="card-text">{{post.idUsers.username}}</p>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
+                                
 
                                 <div class="col-md-9">
                                     <div class="col-md-4" style="margin-top: 20px">
-                                        
                                         <p><b>DESCRIPTION</b></p>
                                         <p>{{post.body}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card" style="width: 18rem;">
+                                        {# <img class="card-img-top" src="{{post.idUsers.profile.image.url}}" alt="Card image cap"> #}
+                                        <div class="card-body">
+                                            <p class="card-text">{{post.idUsers.username}}</p>
+                                        </div> 
                                     </div>
                                 </div>
 
@@ -130,82 +179,26 @@
                     <!--end 2-->
 
                 </div>
-                {% if user.is_authenticated %}
-                <form id="contact" method="POST" action="{% url 'blog-deskripsi' idPost=post.pk %}" role="form"style="display: block;">
+                {% if user.is_authenticated and user != post.idUsers %}
+                <form id="contact" method="POST" role="form"style="display: block;" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="hidden" name="body" id="body" value="Profil Anda Dilihat oleh {{user.username}}">                            
-                    <input type="hidden" name="idPosts" id="idPosts" value="{{post.pk}}">                            
+                    <input name = "body" class="form-control" type="hidden" value="Kontak Dilihat Oleh {{user.username}}" id="example-time-input">
+                    <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
+                    <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
+                    <input name = "idPostUser" class="form-control" type="hidden" value="{{post.idUsers.pk}}" id="example-time-input">
                     <button type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-register">Contact</button>            
                 </form>
                 {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
             {% endif %}
             {% if user.is_authenticated  and user == post.idUsers %}
-                <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
-                <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>    
+                {% for contact in contacts %}
+                    <p>User who see your contact from this post is {{contact.idUsers.username}}</p>
+                {% endfor %}
             {% endif %}
           </div>
           
+          
         </section>
-
-
-        <section id="contact" class="contact sections">
-            <div class="container">
-                <div class="row">
-                    <div class="main_contact whitebackground">
-                        <div class="head_title text-center">
-                            <h2>GET IN TOUCH</h2>
-							<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                        </div>
-                        <div class="contact_content">
-                            <div class="col-md-6">
-                                <div class="single_left_contact">
-                                    <form action="#" id="formid">
-
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="name" placeholder="first name" required="">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
-                                        </div>
-
-                                        <div class="center-content">
-                                            <input type="submit" value="Submit" class="btn btn-default">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single_right_contact">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
-
-                                    <div class="contact_address margin-top-40">
-                                        <span>1600 Pennsylvania Ave NW, Washington,</span>
-                                        <span>DC 20500, United States of America.</span> 
-                                        <span class="margin-top-20">T: (202) 456-1111</span> 
-                                        <span>M: (202) 456-1212</span> 
-                                    </div>
-
-                                    <div class="contact_socail_bookmark">
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-google"></i></a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- End of Contact Section -->
-
-
 		
 		<div class="scrollup">
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
