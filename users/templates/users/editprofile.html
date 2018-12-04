@@ -94,11 +94,12 @@
                                     <div class="form-row">
                                         <div class="col-sm-6">
                                             <label for="validationCustom01">Choose File</label>
+                                            <img id="img_id" src="#" alt="your image"/>
                                         </div>
                                     
                                         <div class="col-sm-6">
                                             <label for="validationCustom01"></label>
-                                            <input name="image" type="file" class="btn btn-success">
+                                            <input name="image" onchange="upload_img(this);" type="file" class="btn btn-success">
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -174,5 +175,21 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+
+
+        function upload_img(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img_id').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
     </section><!-- End of Contact Section -->
 {% endblock content %}
