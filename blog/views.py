@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Post,Category,Types
+from .models import Post,Category,Types,Log
 from django.contrib import messages
 from .forms import PostForm, PostLogForm
 from django.http import HttpResponse
@@ -71,6 +71,7 @@ def detailView(request,idPost):
     context={
         'form':form,
         'post':Post.objects.get(pk = idPost),
+        'contacts':Log.objects.filter(idPosts = idPost),
     }
     return render(request,'blog/detailpost.html',context)
 def detailKontakView(request):
