@@ -1,16 +1,20 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from users.forms import RegistrationForm,UserUpdateForm,ProfileUpdateForm
+# RegistrationProfile
 from blog.models import Post,Log
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 # Create your views here.
 def register(request):
-    form = RegistrationForm()   
+    form = RegistrationForm()
+    # p_form = RegistrationProfile()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)   
+        # p_form = RegistrationProfile(request.POST)
         if form.is_valid():
             form.save()
+            # p_form.save()
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             messages.success(request,f'Account created for {username}!')
@@ -18,7 +22,8 @@ def register(request):
             return redirect('blog-home')
         else:
             form = RegistrationForm()
-    return render(request,'users/masuk.html',{'form':form})
+            # p_form = RegistrationProfile()
+    return render(request,'users/masuk.html',{'form':form,'p_form':p_form})
 @login_required
 def profile(request):
     # username = request.user.username

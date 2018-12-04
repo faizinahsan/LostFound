@@ -25,6 +25,12 @@ class RegistrationForm(UserCreationForm):
 
         if commit:
             user.save() 
+# class RegistrationProfile(forms.ModelForm):
+#     phone = forms.CharField(max_length=13)
+#     line = forms.CharField(max_length=255)
+#     class Meta:
+#         model = Profile
+#         fields = ['line','phone']
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
