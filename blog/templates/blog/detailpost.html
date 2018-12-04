@@ -28,6 +28,20 @@
         cursor: pointer;
     }
 
+    .button3 {
+        background-color: #1CB94E;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+
 </style>
 
     <section id="business" class="portfolio sections2">
@@ -131,7 +145,18 @@
                                     <div class="card" style="width: 18rem;">
                                         {# <img class="card-img-top" src="{{post.idUsers.profile.image.url}}" alt="Card image cap"> #}
                                         <div class="card-body">
-                                            <p class="card-text">{{post.idUsers.username}}</p>
+                                             {% if user.is_authenticated and user != post.idUsers %}
+                                                <form id="contact" method="POST" role="form"style="display: block;" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    {% comment %} Ini Perubahan {% endcomment %}
+                                                    <input name = "body" class="form-control" type="hidden" value="Kontak Dilihat Oleh {{user.username}}" id="example-time-input">
+                                                    <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
+                                                    <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
+                                                    <input name = "idPostUser" class="form-control" type="hidden" value="{{post.idUsers.pk}}" id="example-time-input">
+                                                    <button type="submit" name="submit" id="submit" tabindex="4" class="button3">Contact</button>     
+                                                </form>
+                                                {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
+                                            {% endif %} 
                                         </div> 
                                     </div>
                                 </div>
@@ -179,17 +204,6 @@
                     <!--end 2-->
 
                 </div>
-                {% if user.is_authenticated and user != post.idUsers %}
-                <form id="contact" method="POST" role="form"style="display: block;" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input name = "body" class="form-control" type="hidden" value="Kontak Dilihat Oleh {{user.username}}" id="example-time-input">
-                    <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
-                    <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
-                    <input name = "idPostUser" class="form-control" type="hidden" value="{{post.idUsers.pk}}" id="example-time-input">
-                    <button type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-register">Contact</button>            
-                </form>
-                {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
-            {% endif %}
             {% if user.is_authenticated  and user == post.idUsers %}
                 {% for contact in contacts %}
                     <p>User who see your contact from this post is {{contact.idUsers.username}}</p>
