@@ -58,10 +58,9 @@
                                     </div>
             
                                     <div class="col-md-4">
-                                        <p><b>FOUND BY</b></p>
-                                        <p>{{post.idUsers.username}}</p>
-                                        <p><b>FOUND AT</b></p>
-                                        <p>{{post.body}}</p>
+                                        <!--<p><b>FOUND BY</b></p>
+                                        <p>{{post.idUsers.username}}</p>-->
+                                        
                                     </div>
             
                                     <div class="col-md-4">
@@ -70,7 +69,7 @@
                                     </div>
             
                                 </div>
-
+                                
                                 <div class="col-md-3">
                                     <div class="card" style="width: 18rem;">
                                         {# <img class="card-img-top" src="{{post.idUsers.profile.image.url}}" alt="Card image cap"> #}
@@ -80,15 +79,27 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-9">
+                                    <div class="col-md-4" style="margin-top: 20px">
+                                        
+                                        <p><b>DESCRIPTION</b></p>
+                                        <p>{{post.body}}</p>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12">
                                     <br>
                                     <legend></legend>
                                     <div class="col-md-4">
-                                        <p><b>PHOTOS</b></p>
+                                        <p><b>MAPS</b></p>
+                                        <p><b>({{post.latitude}},{{post.longitude}})</b></p>
+                                        
                                         <div id="mapid" style="width: 600px; height: 400px; position: relative; outline: none;"></div>
                             
                                         <script>
-                                            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+                                            var lat =  {{post.latitude}} ;
+                                            var lon = {{post.longitude}};
+                                            var mymap = L.map('mapid').setView([lat, lon], 13);
                                             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                                                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                                                 maxZoom: 18,
@@ -99,18 +110,13 @@
                                             var markerOptions = {
                                                 title: "MyLocation",
                                                 clickable: true,
-                                                draggable: true
+                                                draggable: false
                                              }
                                              var latLng;
 
-                                            var marker = L.marker([51.5, -0.09], markerOptions).addTo(mymap);
+                                            var marker = L.marker([lat, lon], markerOptions).addTo(mymap);
                                            
-                                            marker.on('dragend', () =>{
-                                                latLng = marker.getLatLng()
-                                                console.log("LatLng = " ,latLng)
-                                                lat=latLng.lat
-                                                lng=latLng.lng
-                                            });
+                                            
                                         </script>
                                         <!--{% leaflet_map "yourmap" %}-->
                                     </div>
