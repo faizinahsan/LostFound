@@ -81,8 +81,18 @@
 
                             <div class="panel-body"> 
                                 <img src="{{post.image.url}}"  width="100%" height="270" style="margin-bottom: 10px">
-                                <h3>{{post.title}}</h3>
-                                <h5>Bandung, Jawa Barat</h5>
+                                <div class="col-md-9">
+                                     <h3>{{post.title}}</h3>
+                                     <h5>Bandung, Jawa Barat</h5>
+                                </div>
+
+                                <div class="col-md-3 pull-right">
+                                    {% if user.is_authenticated  and user == post.idUsers %}
+                                        <a class="button1" href="{% url 'blog-edit' idPost=post.pk %}">EDIT</a>    
+                                        <a class="button2" href="{% url 'blog-delete' idPost=post.pk %}">Delete</a>   
+                                    {% endif %}
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -123,7 +133,7 @@
                                 </div>
 
                                 <div class="col-md-9">
-                                    <div class="col-md-4" style="margin-top: 20px">
+                                    <div class="col-md-9" style="margin-top: 20px">
                                         
                                         <p><b>DESCRIPTION</b></p>
                                         <p>{{post.body}}</p>
@@ -142,9 +152,32 @@
                                                     <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
                                                     <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
                                                     <input name = "idPostUser" class="form-control" type="hidden" value="{{post.idUsers.pk}}" id="example-time-input">
-                                                    <button type="submit" name="submit" id="submit" tabindex="4" class="button3">Contact</button>     
+                                                    <button type="submit" name="submit" id="submit" tabindex="4" class="button3">Contact</button> 
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="button3" data-toggle="modal" data-target="#exampleModalCenter">Launch demo modal</button>    
                                                 </form>
                                                 {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
+                                                <!-- Modal -->                                                
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Contact Info</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        {% comment %} Ditulis disini kontak {% endcomment %}
+                                                        ini kontak
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+
                                             {% endif %} 
                                         </div> 
                                     </div>
@@ -193,72 +226,9 @@
                     <!--end 2-->
 
                 </div>
-            {% if user.is_authenticated  and user == post.idUsers %}
-                <a class="btn btn-default" href="{% url 'blog-edit' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">EDIT</span></a>    
-                <a class="btn btn-default" href="{% url 'blog-delete' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Delete</span></a>    
-            {% endif %}
           </div>
           
         </section>
-
-
-        <section id="contact" class="contact sections">
-            <div class="container">
-                <div class="row">
-                    <div class="main_contact whitebackground">
-                        <div class="head_title text-center">
-                            <h2>GET IN TOUCH</h2>
-							<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                        </div>
-                        <div class="contact_content">
-                            <div class="col-md-6">
-                                <div class="single_left_contact">
-                                    <form action="#" id="formid">
-
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="name" placeholder="first name" required="">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
-                                        </div>
-
-                                        <div class="center-content">
-                                            <input type="submit" value="Submit" class="btn btn-default">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single_right_contact">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
-
-                                    <div class="contact_address margin-top-40">
-                                        <span>1600 Pennsylvania Ave NW, Washington,</span>
-                                        <span>DC 20500, United States of America.</span> 
-                                        <span class="margin-top-20">T: (202) 456-1111</span> 
-                                        <span>M: (202) 456-1212</span> 
-                                    </div>
-
-                                    <div class="contact_socail_bookmark">
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-google"></i></a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- End of Contact Section -->
-
 
 		
 		<div class="scrollup">
