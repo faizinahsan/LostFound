@@ -72,6 +72,18 @@ def searchTypes(request,idType):
     return render(request,'blog/search.html',context)
 def detailView(request,idPost):
     # form = PostLogForm()
+    logs = Log.objects.filter(idUsers = request.user.pk)
+    posts = Post.objects.get(pk = idPost)
+    logIdUser = 0
+    logIdPost = 0
+    stateForContact = 0
+    for log in logs:
+        if log.idUsers.pk == request.user.pk and log.idPosts.pk == posts.pk:
+            logIdUser = log.idUsers.pk
+            logIdPost = idPost
+            stateForContact = 1
+        # print("user :",logIdUser)
+        # print("post :",logIdPost)
     if request.method == "POST":
         form = PostLogForm(request.POST)
         if form.is_valid():
@@ -80,19 +92,21 @@ def detailView(request,idPost):
             body = form.cleaned_data.get('body')
             idPosts = form.cleaned_data.get('idPosts')
             idUserPost = form.cleaned_data.get('idUserPost')
-            messages.success(request,f'Kontak Di Akses Oleh {username}!')
-            messages.success(request,f'Dengan Isi {body}!')
-            messages.success(request,f'Di Post ke {idPosts}!')
-            messages.success(request,f'User yang dilihat adalah {idUserPost}!')
+            messages.success(request,f'Anda Sekarang dapat melihat kontak orang ini!')
+            # messages.success(request,f'Kontak Di Akses Oleh {username}!')
+            # messages.success(request,f'Dengan Isi {body}!')
+            # messages.success(request,f'Di Post ke {idPosts}!')
+            # messages.success(request,f'User yang dilihat adalah {idUserPost}!')
             # return redirect('blog-home')
     else:
         form = PostLogForm()
     # if Log.objects.filter(idUsers = request.user.pk).first
     context={
         'form':form,
-        'post':Post.objects.get(pk = idPost),
+        'post':posts,
         'contacts':Log.objects.filter(idPosts = idPost),
-        'logs':Log.objects.filter(idUsers = request.user.pk)
+        'logs':Log.objects.filter(idUsers = request.user.pk),
+        'stateForContact': stateForContact
     }
     return render(request,'blog/detailpost.html',context)
 def detailKontakView(request):

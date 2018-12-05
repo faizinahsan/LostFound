@@ -144,18 +144,25 @@
                                     <div class="card" style="width: 18rem;">
                                         {# <img class="card-img-top" src="{{post.idUsers.profile.image.url}}" alt="Card image cap"> #}
                                         <div class="card-body">
+
                                              {% if user.is_authenticated and user != post.idUsers %}
-                                                <form id="contact" method="POST" role="form"style="display: block;" enctype="multipart/form-data">
-                                                    {% csrf_token %}
-                                                    {% comment %} Ini Perubahan {% endcomment %}
-                                                    <input name = "body" class="form-control" type="hidden" value="Kontak Dilihat Oleh {{user.username}}" id="example-time-input">
-                                                    <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
-                                                    <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
-                                                    <input name = "idPostUser" class="form-control" type="hidden" value="{{post.idUsers.pk}}" id="example-time-input">
-                                                    <button type="submit" name="submit" id="submit" tabindex="4" class="button3">Contact</button> 
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="button3" data-toggle="modal" data-target="#exampleModalCenter">Launch demo modal</button>    
-                                                </form>
+                                                {% if stateForContact != 1 %}
+                                                    <form id="contact" method="POST" role="form"style="display: block;" enctype="multipart/form-data">
+                                                        {% csrf_token %}
+                                                        {% comment %} Ini Perubahan {% endcomment %}
+                                                        <input name = "body" class="form-control" type="hidden" value="Kontak Dilihat Oleh {{user.username}}" id="example-time-input">
+                                                        <input name = "idPosts" class="form-control" type="hidden" value="{{post.pk}}" id="example-time-input">
+                                                        <input name = "idUsers" class="form-control" type="hidden" value="{{user.pk}}" id="example-time-input">
+                                                        <input name = "idPostUser" class="form-control" type="hidden" value="{{post.idUsers.pk}}" id="example-time-input">
+                                                        <button type="submit" name="submit" id="submit" tabindex="4" class="button3">Contact</button> 
+                                                        <!-- Button trigger modal -->
+                                                    </form>
+                                                {% endif %}
+                                                {% if stateForContact == 1 %}   
+                                                {% comment %} Contact Modal {% endcomment %}
+                                                    <button type="button" class="button3" data-toggle="modal" data-target="#exampleModalCenter">Contact</button>    
+                                                {% endif %}
+                                                
                                                 {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
 
                                                 {% comment %} {% set logPostId = 0 %} {% endcomment %}
