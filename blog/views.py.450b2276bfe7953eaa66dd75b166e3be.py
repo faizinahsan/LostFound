@@ -32,14 +32,13 @@ def search(request):
         search_query = request.GET.get('search_box', None)
         totalCount = list()
         posts = Post.objects.filter(title__icontains=search_query).order_by('-createdDate')
-        for cat in Category.objects.all():
+        for cat in Categories.objects.all():
             totalCount.append(posts.filter(idCategories=cat.pk).count)
         context ={
             'posts':posts,
             'typesLost':Post.objects.filter(idTypes=1,title__icontains=search_query),
             'typesFound':Post.objects.filter(idTypes=2,title__icontains=search_query),
             'categories': Category.objects.all(),
-            'total':totalCount
         }
         return render(request,'blog/search.html',context)
     return render(request,'blog/search.html',context)

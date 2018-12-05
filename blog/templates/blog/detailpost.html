@@ -157,26 +157,49 @@
                                                     <button type="button" class="button3" data-toggle="modal" data-target="#exampleModalCenter">Launch demo modal</button>    
                                                 </form>
                                                 {% comment %} <a class="btn btn-default" href="{% url 'blog-kontak' idPost=post.pk %}"><span class="glyphicon glyphicon-pencil">Contact</span></a>     {% endcomment %}
-                                                <!-- Modal -->                                                
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Contact Info</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
+
+                                                {% comment %} {% set logPostId = 0 %} {% endcomment %}
+                                                {% comment %} {% set logUserId = 0 %} {% endcomment %}
+                                                {% comment %} {% for log in logs %}
+                                                    {% if log.idUsers.pk == user.pk %}
+                                                    {% with logUserId=log.idUsers.pk %}
+                                                    <p>Log User{{logUserId}}</p>
+                                                    {% endwith %}
+                                                    {% endif %}
+                                                    {% if log.idPosts.pk == post.pk %}
+                                                    {% with logPostId=log.idPosts.pk %}
+                                                    <p>Log Pos{{logPostId}}</p>
+                                                    {% endwith %}
+                                                    {% endif %}
+                                                {% endfor %} {% endcomment %}
+                                                    {% comment %} <p>Log User diluar for{{logUserId}}</p> {% endcomment %}
+                                            
+                                                {% comment %} <p>{{logPostId}}</p> {% endcomment %}
+                                                {% comment %} {% if logs.idUsers.pk == user.pk and logs.idPosts == post.pk %} {% endcomment %}
+
+                                                    <!-- Modal -->                                                
+                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Contact Info</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {% comment %} Ditulis disini kontak {% endcomment %}
+                                                            {{post.idUsers.email}} <br>
+                                                            {{post.idUsers.profile.phone}} <br>
+                                                            {{post.idUsers.profile.line}} <br>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        {% comment %} Ditulis disini kontak {% endcomment %}
-                                                        ini kontak
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                                {% comment %} {% endif %} {% endcomment %}
 
                                             {% endif %} 
                                         </div> 
