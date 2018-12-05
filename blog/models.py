@@ -54,7 +54,7 @@ class Category(models.Model):
 	createdDate = models.DateTimeField(default=timezone.now)
 	#createdDate DATE NOT NULL
 	def __str__(self):
-		return f'{self.name} Category'
+		return f'{self.name}'
 	
 
 class Types(models.Model):

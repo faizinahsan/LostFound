@@ -59,7 +59,7 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="{% url 'blog-search-types' post.idTypes.pk %}">{{post.idTypes.name}}</a></li>
                             <li><a href="{% url 'blog-search-cat' post.idCategories.pk %}">{{post.idCategories.name}}</a></li>
-                            <li class="active">Sepatu Adidas</li>
+                            <li class="active">{{post.title}}</li>
                         </ol>
                     </div>
                 </div>

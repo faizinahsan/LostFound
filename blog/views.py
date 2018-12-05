@@ -30,10 +30,12 @@ def search(request):
         
     if request.method =='GET':
         search_query = request.GET.get('search_box', None)
-        totalCount = list()
+        totalCount = {}
         posts = Post.objects.filter(title__icontains=search_query).order_by('-createdDate')
         for cat in Category.objects.all():
-            totalCount.append(posts.filter(idCategories=cat.pk).count)
+            totalCount[cat] = posts.filter(idCategories=cat.pk).count
+        for eachtotal in totalCount :
+            print(eachtotal,"=",totalCount[eachtotal])
         context ={
             'posts':posts,
             'typesLost':Post.objects.filter(idTypes=1,title__icontains=search_query),
@@ -43,18 +45,29 @@ def search(request):
         }
         return render(request,'blog/search.html',context)
     return render(request,'blog/search.html',context)
+ 
 def searchCat(request,idCat):
+    totalCount = {}
+    posts = Post.objects.filter(idCategories=idCat).order_by('-createdDate')
+    for cat in Category.objects.all():
+        totalCount[cat] = posts.filter(idCategories=cat.pk).count
     context = {
-        'posts':Post.objects.filter(idCategories=idCat).order_by('-createdDate'),
+        'posts':posts,
         'typesLost':Post.objects.filter(idTypes=1,idCategories=idCat),
         'typesFound':Post.objects.filter(idTypes=2,idCategories=idCat),
+        'total':totalCount
     }
     return render(request,'blog/search.html',context)
 def searchTypes(request,idType):
+    totalCount = {}
+    posts = Post.objects.filter(idTypes=idType).order_by('-createdDate')
+    for cat in Category.objects.all():
+        totalCount[cat] = posts.filter(idCategories=cat.pk).count
     context = {
-        'posts':Post.objects.filter(idTypes=idType).order_by('-createdDate'),
+        'posts':posts,
         'typesLost':Post.objects.filter(idTypes=1 ),
         'typesFound':Post.objects.filter(idTypes=2),
+        'total':totalCount
     }
     return render(request,'blog/search.html',context)
 def detailView(request,idPost):

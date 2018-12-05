@@ -21,16 +21,10 @@
                     <div class="panel-body">Lost :{{typesLost.count}}</b></div>
                     <div class="panel-body">Found:{{typesFound.count}}</b></div>
                     <div class="panel-body"><b>Category</b></div>
-                    {% comment %} {% for cat in categories %} {% endcomment %}
+                    {% for key,value in total.items %}
+                        <div class="panel-body">{{key}} :{{value}}</b></div>
+                    {% endfor %}
 
-                        {% comment %} <div class="panel-body">{{cat.name}} :{{total}}</b></div>                     {% endcomment %}
-                    {% comment %} {% endfor %} {% endcomment %}
-                    {% comment %} <p>{%with posts.filter(idCategories = cat.pk).count %}</p> {% endcomment %}
-                    {% comment %} {% for cat in categories %} {% endcomment %}
-                    {% comment %} {% with total = posts.filter(idCategories = cat.pk).count %} {% endcomment %}
-                        {% comment %} <div class="panel-body">{{cat.name}} :{{total}}</b></div> {% endcomment %}
-                    {% comment %} {%endwith%} {% endcomment %}
-                    {% comment %} {% endfor %} {% endcomment %}
                 </div>
             </div>
 
