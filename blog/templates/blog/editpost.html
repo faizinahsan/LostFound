@@ -22,7 +22,7 @@
                                 <br>
 
 
-                                <form class="form-horizontal" action="{% url 'blog-edit' idPost=post.pk %}" method="POST">
+                                <form class="form-horizontal" action="{% url 'blog-edit' idPost=post.pk %}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <fieldset>
                                                                     <!-- Message body -->
