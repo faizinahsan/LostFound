@@ -114,7 +114,7 @@ def detailKontakView(request):
 def createPost(request):
     form = PostForm
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST,request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.idUsers = request.user
@@ -131,13 +131,15 @@ def createPost(request):
 def editPost(request,idPost):
     post = get_object_or_404(Post, pk=idPost)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST,request.FILES, instance=post)
         if form.is_valid():
+            messages.success(request,f'Form Is Valid')
             post = form.save(commit=False)
             post.idUsers = request.user
             post.save()
             return redirect('blog-deskripsi', idPost=post.pk)
     else:
+        messages.success(request,f'Failed to Update Post')
         form = PostForm(instance=post)
     return render(request, 'blog/editpost.html', {'form': form,'post':post})
 def deletePost(request,idPost):

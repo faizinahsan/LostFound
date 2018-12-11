@@ -29,7 +29,7 @@ class Post(models.Model):
 	#area VARCHAR(255) NOT NULL
 	body = models.TextField()
 	#body TEXT NOT NULL
-	image = models.ImageField(max_length=255, default='imgBlogDefault.jpg',upload_to='image_blog')
+	image = models.ImageField(default='imgBlogDefault.jpg',upload_to='image_blog')
 	#image VARCHAR(255) NOT NULL
 	createdDate = models.DateTimeField(default=timezone.now)
 	#createdDate DATE NOT NULL
